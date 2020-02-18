@@ -7,16 +7,326 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
   color: #09d3ac;
 }
+
+
+#wrapper {
+  background-color: white;
+}
+
+
+/*******/
+/* HOME START */
+/*******/
+
+#home_header {
+  padding: 10px;
+  -webkit-box-shadow: 0px 2px 26px -18px rgba(0,0,0,0.48);
+  -moz-box-shadow: 0px 2px 26px -18px rgba(0,0,0,0.48);
+  box-shadow: 0px 2px 26px -18px rgba(0,0,0,0.48);
+}
+
+#hex_header_logo {
+  height: 50px;
+  max-height: 100px;
+}
+
+.home_cover {
+  flex-shrink: 0;
+  height: 750px;
+  min-height: 100%;
+  overflow: hidden;
+  background-image: url(./images/Smart-factory-image1.png);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+#home_cover_img {
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 10;
+}
+
+#cover_content {
+  padding: 25px;
+  position: inherit;
+}
+
+#home_title {
+  z-index: 999;
+  font-size: 15px;
+  font-weight: 900;
+  color: white;
+  text-shadow: 0px 5px 11px rgba(56,24,15,0.55);
+}
+
+#home_enter_btn {
+  z-index: 99;
+  margin-top:5px;
+  width: 100%;
+  border: 4px solid #A6D867;
+  border-radius: 5px;
+  height: 47px;
+  background-color: transparent;
+  text-transform: uppercase;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 18px;
+  text-shadow: 1px 2px 7px rgba(56,24,15,0.77);
+  -webkit-box-shadow: 0px 11px 29px -1px rgba(46,46,46,0.75);
+  -moz-box-shadow: 0px 11px 29px -1px rgba(46,46,46,0.75);
+  box-shadow: 0px 11px 29px -1px rgba(46,46,46,0.75);
+}
+
+#home_enter_btn:hover {
+  background-color: #A6D867;
+  text-shadow: 0.5px 0.5px 3px rgba(56,24,15,0.77);
+}
+
+.home_info_box {
+  height: 350px;
+}
+
+.home_info_icons {
+  height: 200px;
+  width: 200px;
+}
+
+
+@media only screen and (min-width : 601px) {
+  #home_title {
+    z-index: 99;
+    font-size: 22px;
+    font-weight: 900;
+    color: white;
+    text-shadow: 0px 5px 11px rgba(56, 24, 15, 0.55);
+  }
+}
+
+
+@media only screen and (min-width : 801px) {
+  #home_title {
+    z-index: 99;
+    font-size: 27px;
+    font-weight: 900;
+    color: white;
+    text-shadow: 0px 5px 11px rgba(56, 24, 15, 0.55);
+  }
+}
+
+
+@media only screen and (min-width : 1041px) {
+  #home_title {
+    z-index: 99;
+    font-size: 44px;
+    font-weight: 900;
+    color: white;
+    text-shadow: 0px 5px 11px rgba(56,24,15,0.55);
+  }
+}
+
+@media only screen and (min-width : 1300px) {
+  #home_title {
+  z-index: 99;
+  font-size: 50px;
+  font-weight: 900;
+  color: white;
+  text-shadow: 0px 5px 11px rgba(56, 24, 15, 0.55);
+  }
+}
+
+@media only screen and (min-width : 1550px) {
+  #home_title {
+    z-index: 99;
+    font-size: 60px;
+    font-weight: 900;
+    color: white;
+    text-shadow: 0px 5px 11px rgba(56, 24, 15, 0.55);
+  }
+}
+
+/*****/
+/* Select Location Start*/
+
+#location_icon {
+  width: 200px;
+}
+
+#choose_location_container {
+  width: 350px;
+}
+
+#location_selector {
+  width: 100%;
+  position: relative;
+  /*border: 5px solid green;*/
+}
+
+.select-css {
+  display: block;
+  font-size: 16px;
+  font-family: sans-serif;
+  font-weight: 700;
+  color: #444;
+  line-height: 1.3;
+  padding: .6em 1.4em .5em .8em;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid #aaa;
+  box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+  border-radius: .5em;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+  linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+  background-repeat: no-repeat, repeat;
+  background-position: right .7em top 50%, 0 0;
+  background-size: .65em auto, 100%;
+}
+.select-css::-ms-expand {
+  display: none;
+}
+.select-css:hover {
+  border-color: #888;
+}
+.select-css:focus {
+  border-color: #aaa;
+  box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+  box-shadow: 0 0 0 3px -moz-mac-focusring;
+  color: #222;
+  outline: none;
+}
+.select-css option {
+  font-weight:normal;
+}
+
+/* Select Location End*/
+/*****/
+
+
+
+
+
+
+/*--- old below --- */
+
+.btn_sample {
+  width: 150px;
+  height: 35px;
+  background-color: dodgerblue;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.btn_sample_two {
+  width: 150px;
+  height: 35px;
+  background-color: white;
+  border: 1px solid dodgerblue;
+  margin: 10px;
+  border-radius: 5px;
+  color: dodgerblue;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.home_btn {
+  font-size: 16px;
+  color: white;
+}
+
+.home_btn:hover {
+  font-size: 16px;
+  color: ghostwhite;
+  text-decoration: underline;
+}
+
+#home_container {
+  background-color: white;
+}
+
+/*******/
+/* HOME END */
+/*******/
+
+
+#location_enter_btn {
+  z-index: 99;
+  width: 100%;
+  border-radius: 5px;
+  height: 35px;
+  background-color: #A6D867;
+  text-transform: uppercase;
+  color: white;
+  font-weight: 900;
+  letter-spacing: 2px;
+  font-size: 14px;
+  text-shadow: 1px 1px 1px rgba(56,24,15,0.22);
+  margin-top: 1em;
+}
+
+
+/*******/
+/* Dashboard Start */
+/*******/
+
+.device_icons {
+  height: 45%;
+  width: auto !important;
+  border-bottom: 0.5px solid lightgray;
+  margin-bottom: 2em;
+}
+
+.device_card {
+  width: 90%;
+  height: 75px !important;
+  padding: 1em;
+  margin: 1em;
+}
+
+#location_lidar {
+  height: 500px;
+  width: 100%;
+  border: 2px solid grey;
+}
+
+#location_data_container {
+  width: 85%;
+  border: 1px solid grey;
+  margin-top: 25px;
+  border-radius: 5px;
+}
+
+#location_data_headers {
+  border-bottom: 1px solid grey;
+}
+
+#location_data_header {
+  padding: 25px;
+}
+
+#location_data {
+  padding: 25px;
+}
+
+/*******/
+/* Dashboard END */
+/*******/
