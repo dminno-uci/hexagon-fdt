@@ -1,4 +1,4 @@
-import { cameras, events, assets } from "./data";
+import { locations, cameras, events, assets } from "./data";
 
 
 //     Get all locations
@@ -28,14 +28,20 @@ import { cameras, events, assets } from "./data";
 
 // export function getAll
 
+export function getLocations() {
+    return locations;
+}
+
 export function getLocationCamerasAPI(location_id) {
-    return cameras.filter((camera) => camera.location === location_id)
+    return cameras.filter(camera => camera.location_id === location_id);
 }
 
 export function getLocationEventsAPI(location_id) {
-    return events.filter((event) => event.location === location_id)
+    console.log(events);
+    console.log(location_id)
+    return events.filter((event) => event.location_id === location_id)
 }
 
 export function getLocationAssetsAPI(location_id) {
-    return assets.filter((asset) => asset.location === location_id)
+    return assets.filter((asset) => asset.location_id === location_id)
 }

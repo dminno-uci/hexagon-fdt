@@ -61,7 +61,7 @@ const camera_30 =
         device_id: 10,
         events: [70, 80],
         assets: [50, 60],
-        name: "Camera Left",
+        name: "D10 / Camera 30",
     };
 
 const camera_40 =
@@ -71,7 +71,7 @@ const camera_40 =
         device_id: 10,
         events: [71, 81],
         assets: [51, 61],
-        name: "Camera Right",
+        name: "D10 / Camera 40",
     };
 
 const camera_31 =
@@ -81,7 +81,7 @@ const camera_31 =
         device_id: 20,
         events: [71, 81],
         assets: [51, 61],
-        name: "Camera Left",
+        name: "D20 / Camera 31",
     };
 
 const camera_41 =
@@ -91,7 +91,7 @@ const camera_41 =
         device_id: 20,
         events: [70, 80],
         assets: [50, 60],
-        name: "Camera Right",
+        name: "D20 / Camera 41s",
     };
 
 
@@ -101,7 +101,7 @@ const event_70 =
         _id: 70,
         location_id: 0,
         cameras: [30, 40],
-        name: "Event Big",
+        name: "Event Big 0",
     };
 
 const event_80 =
@@ -109,7 +109,7 @@ const event_80 =
         _id: 80,
         location_id: 0,
         cameras: [30, 40],
-        name: "Event Small",
+        name: "Event Small 0",
     };
 
 const event_71 =
@@ -117,7 +117,7 @@ const event_71 =
         _id: 71,
         location_id: 1,
         cameras: [31, 41],
-        name: "Event Medium",
+        name: "Event Medium 1",
     };
 
 const event_81 =
@@ -125,7 +125,7 @@ const event_81 =
         _id: 81,
         location_id: 1,
         cameras: [31, 41],
-        name: "Event Large",
+        name: "Event Large 1",
     };
 
 
@@ -135,7 +135,7 @@ const asset_50 =
         _id: 50,
         location_id: 0,
         cameras: [30, 40],
-        name: "Asset Manual",
+        name: "Asset Manual 0",
     };
 
 const asset_60 =
@@ -143,7 +143,7 @@ const asset_60 =
         _id: 60,
         location_id: 0,
         cameras: [30, 40],
-        name: "Asset Automatic",
+        name: "Asset Automatic 0",
     };
 
 const asset_51 =
@@ -151,7 +151,7 @@ const asset_51 =
         _id: 51,
         location_id: 1,
         cameras: [31, 41],
-        name: "Asset Manual",
+        name: "Asset Manual 1",
     };
 
 const asset_61 =
@@ -159,9 +159,8 @@ const asset_61 =
         _id: 61,
         location_id: 1,
         cameras: [31, 41],
-        name: "Asset Automatic",
+        name: "Asset Automatic 1",
     };
-
 
 
 
@@ -175,40 +174,32 @@ export const locations =
 
 export const devices =
     [
-        {
-            device_10,
-            device_11,
-            device_20,
-            device_21
-        }
+        device_10,
+        device_11,
+        device_20,
+        device_21
     ];
 
 export const cameras =
     [
-        {
-            camera_30,
-            camera_31,
-            camera_40,
-            camera_41
-        }
+        camera_30,
+        camera_31,
+        camera_40,
+        camera_41
     ];
 
 export const assets =
     [
-        {
-            asset_50,
-            asset_60,
-            asset_51,
-            asset_61
-        }
+        asset_50,
+        asset_60,
+        asset_51,
+        asset_61
     ];
 
 export const events =
     [
-        {
-            event_70,
-            event_71,
-            event_80,
-            event_81
-        }
+        event_70,
+        event_71,
+        event_80,
+        event_81
     ];

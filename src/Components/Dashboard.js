@@ -2,17 +2,23 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from "react-router-dom";
 import '../App.css';
+
 import location_icon from "../images/location_icon.png";
+import gear_icon from '../images/gear.png'
+
 import { handleGetLocationCameras } from "../actions/cameras";
+import {handleGetLocationAssets} from "../actions/assets";
 
 import { ItemCard } from "./ItemCard";
-import gear_icon from '../images/gear.png'
+import {handleGetLocationEvents} from "../actions/events";
 
 
 class Dashboard extends Component {
 
     componentDidMount() {
-        this.props.dispatch(handleGetLocationCameras());
+        this.props.dispatch(handleGetLocationCameras(this.props.location._id));
+        this.props.dispatch(handleGetLocationAssets(this.props.location._id));
+        this.props.dispatch(handleGetLocationEvents(this.props.location._id))
     }
 
     state = {
@@ -25,50 +31,37 @@ class Dashboard extends Component {
         }));
     };
 
-    iterateOverItem = (items) => {
-        return Object.keys(items)
-            .map((k) => {
-                return <ItemCard item={items[k]} />;
-            });
-    };
-
     render()  {
-        const { location, cameras } = this.props;
+        const { location, cameras, assets, events } = this.props;
         const { focusLocationData } = this.state;
 
         function showFocusLocationData() {
                 if (focusLocationData === 'cameras') {
                     return Object.keys(cameras)
                         .map((k) => {
-                            return (<ItemCard item={cameras[k]} />);
+                            return (<ItemCard key={cameras[k]._id} item={cameras[k]} />);
                         });
                     //         {/*<Link to="/camera">*/}
                     //             {/*<span>Camera 1</span>*/}
                     //         {/*</Link>*/}
                 } else if (focusLocationData === 'events') {
-                    return (
-                        <div>
-                            <Link to="/event">
-                                <span>Event 1</span>
-                            </Link>
-                        </div>
-                    )
+                    return Object.keys(events)
+                        .map((k) => {
+                            return (<ItemCard key={events[k]._id} item={events[k]} />);
+                        });
                 } else {
-                    return (
-                        <div>
-                            <Link to="/asset">
-                                <span>Asset 1</span>
-                            </Link>
-                        </div>
-                    )
+                    return Object.keys(assets)
+                        .map((k) => {
+                            return (<ItemCard key={assets[k]._id} item={assets[k]} />);
+                        });
                 }
         }
 
         return (
             <Fragment>
-            {/*{ !this.props.locationDevices*/}
-            {/*? <Redirect to='/locations'/>*/}
-            {/*:*/}
+            { this.props.cameras.length < 1
+            ? <Redirect to='/locations'/>
+            :
                 <div className="d-flex flex-column justify-content-center align-items-center">
                     <div className="d-flex flex-column justify-content-center align-items-center mt-5 container">
                         <img src={location_icon} id="location_icon" alt='Choose Location Icon'/>
@@ -124,19 +117,21 @@ class Dashboard extends Component {
                         <br />
                     </div>
                 </div>
-            {/*}*/}
+            }
             </Fragment>
         )
     }
 }
 
-function mapStateToProps({ locations, cameras }) {
+function mapStateToProps({ locations, cameras, assets, events }) {
     const zero = 0;
     const empty = [];
 
     return {
         location : locations.locations ? locations.locations.find((l) => l._id === locations.selectedLocation) : zero,
-        cameras: cameras.length > 0 ? cameras[0] : empty
+        cameras: cameras.length > 0 ? cameras : empty,
+        assets: assets.length > 0 ? assets : empty,
+        events: events.length > 0 ? events : empty,
     }
 }
 

@@ -14,7 +14,7 @@ function setLocationCameras(cameras) {
 
 export function handleGetLocationCameras(location_id) {
     return (dispatch) => {
-        let devices = getLocationCamerasAPI(location_id);
-        dispatch(setLocationCameras(devices))
+        let cameras = getLocationCamerasAPI(location_id);
+        dispatch(setLocationCameras(cameras))
     }
 }
