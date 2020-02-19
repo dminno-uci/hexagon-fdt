@@ -6,7 +6,7 @@ import location_icon from "../images/location_icon.png"
 import Select from 'react-select';
 
 import { receiveLocations, selectLocation } from "../actions/locations";
-import { handleGetLocationDevices } from "../actions/devices";
+import { handleGetLocationCameras } from "../actions/cameras";
 
 
 class ChooseLocation extends Component {
@@ -28,7 +28,7 @@ class ChooseLocation extends Component {
     };
 
     submitLocation = () => {
-        this.props.dispatch(handleGetLocationDevices(this.state.selectedOption._id));
+        this.props.dispatch(handleGetLocationCameras(this.state.selectedOption._id));
     };
 
     render()  {

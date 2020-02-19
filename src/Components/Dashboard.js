@@ -3,10 +3,17 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from "react-router-dom";
 import '../App.css';
 import location_icon from "../images/location_icon.png";
+import { handleGetLocationCameras } from "../actions/cameras";
+
+import { ItemCard } from "./ItemCard";
 import gear_icon from '../images/gear.png'
 
 
 class Dashboard extends Component {
+
+    componentDidMount() {
+        this.props.dispatch(handleGetLocationCameras());
+    }
 
     state = {
         focusLocationData: 'cameras'
@@ -18,19 +25,26 @@ class Dashboard extends Component {
         }));
     };
 
+    iterateOverItem = (items) => {
+        return Object.keys(items)
+            .map((k) => {
+                return <ItemCard item={items[k]} />;
+            });
+    };
+
     render()  {
-        const { location, locationDevices } = this.props;
+        const { location, cameras } = this.props;
         const { focusLocationData } = this.state;
 
         function showFocusLocationData() {
                 if (focusLocationData === 'cameras') {
-                    return (
-                        <div>
-                            <Link to="/camera">
-                                <span>Camera 1</span>
-                            </Link>
-                        </div>
-                    )
+                    return Object.keys(cameras)
+                        .map((k) => {
+                            return (<ItemCard item={cameras[k]} />);
+                        });
+                    //         {/*<Link to="/camera">*/}
+                    //             {/*<span>Camera 1</span>*/}
+                    //         {/*</Link>*/}
                 } else if (focusLocationData === 'events') {
                     return (
                         <div>
@@ -52,9 +66,9 @@ class Dashboard extends Component {
 
         return (
             <Fragment>
-            { !this.props.locationDevices
-            ? <Redirect to='/locations'/>
-            :
+            {/*{ !this.props.locationDevices*/}
+            {/*? <Redirect to='/locations'/>*/}
+            {/*:*/}
                 <div className="d-flex flex-column justify-content-center align-items-center">
                     <div className="d-flex flex-column justify-content-center align-items-center mt-5 container">
                         <img src={location_icon} id="location_icon" alt='Choose Location Icon'/>
@@ -110,19 +124,19 @@ class Dashboard extends Component {
                         <br />
                     </div>
                 </div>
-            }
+            {/*}*/}
             </Fragment>
         )
     }
 }
 
-function mapStateToProps({ locations, devices }) {
+function mapStateToProps({ locations, cameras }) {
     const zero = 0;
     const empty = [];
 
     return {
         location : locations.locations ? locations.locations.find((l) => l._id === locations.selectedLocation) : zero,
-        locationDevices: devices ? devices.locationDevices : empty
+        cameras: cameras.length > 0 ? cameras[0] : empty
     }
 }
 
