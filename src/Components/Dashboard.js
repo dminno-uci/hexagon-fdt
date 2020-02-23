@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from "react-router-dom";
 import '../App.css';
 
-import location_icon from "../images/location_icon.png";
-import gear_icon from '../images/gear.png'
 import pcd1 from '../images/pcd-1.jpg'
 
 import { handleGetLocationCameras } from "../actions/cameras";
@@ -12,7 +10,9 @@ import {handleGetLocationAssets} from "../actions/assets";
 
 import { ItemCard } from "./ItemCard";
 import {handleGetLocationEvents} from "../actions/events";
-import logo from "../images/Hexagon-logo.png";
+
+import DashboardPath from './DashboardPath'
+import EventListItem from "./EventListItem";
 
 
 class Dashboard extends Component {
@@ -24,9 +24,8 @@ class Dashboard extends Component {
     }
 
     state = {
-        focusLocationData: 'cameras',
+        focusLocationData: 'assets',
         cameraFocus: true,
-        eventFocus: false,
         assetFocus: false,
 
     };
@@ -49,7 +48,7 @@ class Dashboard extends Component {
                                 <Link to={{
                                     pathname: "/camera",
                                     state: { camera: cameras[k] }
-                                }} style={{ width: '33.3%' }}>
+                                }} >
                                     <ItemCard key={cameras[k]._id} item={cameras[k]} />
                                 </Link>
                             );
@@ -61,7 +60,7 @@ class Dashboard extends Component {
                                 <Link to={{
                                     pathname: "/event",
                                     state: { event: events[k] }
-                                }} style={{ width: '33.3%' }}>
+                                }} >
                                     <ItemCard key={events[k]._id} item={events[k]} />
                                 </Link>
                             );
@@ -73,7 +72,7 @@ class Dashboard extends Component {
                                 <Link to={{
                                     pathname: "/asset",
                                     state: { asset: assets[k] }
-                                }} style={{ width: '33.3%' }}>
+                                }} >
                                     <ItemCard key={assets[k]._id} item={assets[k]} />
                                 </Link>
                             );
@@ -90,44 +89,73 @@ class Dashboard extends Component {
             { this.props.cameras.length < 1
             ? <Redirect to='/locations'/>
             :
-                <div className="d-flex flex-column justify-content-center align-items-center">
-                    <div className="d-flex flex-column justify-content-center align-items-center mt-5 container">
-                        {/*<img src={location_icon} id="location_icon" alt='Choose Location Icon'/>*/}
-                        <div className="d-flex flex-column" id="location_header_container">
-                            <h3 className="d-flex flex-grow-1" id="location_header">
-                                { location.name }
-                            </h3>
-                            <hr className="d-flex flex-grow-1" id="location_header_line" />
+                <div className="d-flex flex-column justify-content-center align-items-center"  id="dashboard_container">
+                    <DashboardPath />
+                    <div className="d-flex flex_row dashsboard_row" id="dashsboard_row">
+
+                        <div className="d-flex flex-column" id="pcd_section">
+                            <h5 className="section_header">
+                                Lidar Stream
+                            </h5>
+                             <div id="pcd_container">
+                                 <img src={pcd1} id="pcd_image" alt="Point Cloud Data" />
+                             </div>
                         </div>
-                        <div className="d-flex justify-content-center align-items-center" id="location_lidar">
-                            <img src={pcd1} id="pcd_container" alt="Point Cloud Data" />
-                        </div>
-                        <div className="d-flex flex-column" id="location_data_container">
-                            <div className="d-flex flex-row" id="location_data_headers">
-                                <div className={`d-flex justify-content-center align-items-center flex-fill location_data_header ${isFocus('cameras') ? "tabActive" : ""}`}
-                                     onClick={() => this.toggleLocationData('cameras')}>
-                                    Cameras
+
+                        <div className="d-flex flex-column" id="event_list_section">
+                            <h5 className="d-flex flex-row section_header">
+                                Event List
+                                <div className="d-flex align-items-center justify-content-center ml-auto" id="event_see_all_btn">
+                                    See all
                                 </div>
-                                <div className={`d-flex justify-content-center align-items-center flex-fill location_data_header ${isFocus('events') ? "tabActive" : ""}`}
-                                     onClick={() => this.toggleLocationData('events')}>
-                                    Events
-                                </div>
-                                <div className={`d-flex justify-content-center align-items-center flex-fill location_data_header ${isFocus('assets') ? "tabActive" : ""}`}
-                                     onClick={() => this.toggleLocationData('assets')}>
-                                    Assets
-                                </div>
-                            </div>
-                            <div className="d-flex justify-content-center align-items-center" id="location_data">
-                                { showFocusLocationData() }
+                            </h5>
+
+                            <div className="d-flex flex-column" id="event_list_container">
+                                {
+                                    Object.keys(events)
+                                    .map((event_id) => {
+                                        return (
+                                            <Link to={{
+                                                pathname: "/event",
+                                                state: {event: events[event_id]}
+                                            }} >
+                                                <div className="d-flex flex-column" id="event_list">
+                                                    <EventListItem event={events[event_id]} />
+                                                </div>
+                                            </Link>
+                                        );
+                                    })
+                                }
                             </div>
 
                         </div>
-                        <hr />
-                        <Link to="/locations">
-                            <span>Back</span>
-                        </Link>
-                        <br />
+
                     </div>
+
+                    <div className="d-flex flex-column" id="location_data_container">
+
+                        <div className="d-flex flex-row" id="location_data_headers">
+                            <h5 className={`d-flex flex-row section_header location_data_header ${isFocus('assets') ? "tabActive" : ""}`}
+                                onClick={() => this.toggleLocationData('assets')}>
+                                Assets
+                            </h5>
+
+                            <h5 className={`d-flex flex-row section_header location_data_header ${isFocus('cameras') ? "tabActive" : ""}`}
+                                 onClick={() => this.toggleLocationData('cameras')}>
+                                Cameras
+                            </h5>
+                        </div>
+
+                        <div className="d-flex justify-content-start align-items-center" id="location_data">
+                            { showFocusLocationData() }
+                        </div>
+
+                    </div>
+                    <hr />
+                    <Link to="/locations">
+                        <span>Back</span>
+                    </Link>
+                    <br />
                 </div>
             }
             </Fragment>
@@ -140,7 +168,8 @@ function mapStateToProps({ locations, cameras, assets, events }) {
     const empty = [];
 
     return {
-        location : locations.locations ? locations.locations.find((l) => l._id === locations.selectedLocation) : zero,
+        location: locations.locations ? locations.locations.find((l) => l._id === locations.selectedLocation) : zero,
+        // locations: 1,
         cameras: cameras.length > 0 ? cameras : empty,
         assets: assets.length > 0 ? assets : empty,
         events: events.length > 0 ? events : empty,

@@ -3,7 +3,7 @@ const location_0 =
         _id: 0,
         devices: [10, 20],
         cameras: [30, 40],
-        assets: [50, 60],
+        assets: [50, 60, 62, 64],
         events: [70, 80],
         name: "Factory Blue",
     };
@@ -13,7 +13,7 @@ const location_1 =
         _id: 1,
         devices: [11, 21],
         cameras: [31, 41],
-        assets: [51, 61],
+        assets: [51, 61, 63, 65],
         events: [71, 81],
         name: "Factory Yellow",
     };
@@ -99,33 +99,45 @@ const camera_41 =
 const event_70 =
     {
         _id: 70,
+        u_id: 'E70',
         location_id: 0,
         cameras: [30, 40],
-        name: "Event Big 0",
+        asset: 60,
+        name: "Routine Started",
+        timestamp: '2020-02-23 09:57:38 AM'
     };
 
 const event_80 =
     {
         _id: 80,
+        u_id: 'E80',
         location_id: 0,
         cameras: [30, 40],
-        name: "Event Small 0",
+        asset: 50,
+        name: "Routine Completed",
+        timestamp: '2020-02-23 09:57:38 AM'
     };
 
 const event_71 =
     {
         _id: 71,
+        u_id: 'E71',
         location_id: 1,
         cameras: [31, 41],
-        name: "Event Medium 1",
+        asset:  61,
+        name: "Routine Started",
+        timestamp: '2020-02-23 09:57:38 AM'
     };
 
 const event_81 =
     {
         _id: 81,
+        u_id: 'E81',
         location_id: 1,
         cameras: [31, 41],
-        name: "Event Large 1",
+        asset: 51,
+        name: "Routine Completed",
+        timestamp: '2020-02-23 09:57:38 AM'
     };
 
 
@@ -135,7 +147,8 @@ const asset_50 =
         _id: 50,
         location_id: 0,
         cameras: [30, 40],
-        name: "Asset Manual 0",
+        events: [80],
+        name: "CLT-DCMM1",
     };
 
 const asset_60 =
@@ -143,7 +156,26 @@ const asset_60 =
         _id: 60,
         location_id: 0,
         cameras: [30, 40],
-        name: "Asset Automatic 0",
+        events: [70],
+        name: "DynamicSys942",
+    };
+
+const asset_62 =
+    {
+        _id: 62,
+        location_id: 0,
+        cameras: [30, 40],
+        events: [70],
+        name: "DynamicSys942",
+    };
+
+const asset_64 =
+    {
+        _id: 64,
+        location_id: 0,
+        cameras: [30, 40],
+        events: [70],
+        name: "DynamicSys942",
     };
 
 const asset_51 =
@@ -151,7 +183,8 @@ const asset_51 =
         _id: 51,
         location_id: 1,
         cameras: [31, 41],
-        name: "Asset Manual 1",
+        events: [81],
+        name: "HJ_Test1223",
     };
 
 const asset_61 =
@@ -159,10 +192,28 @@ const asset_61 =
         _id: 61,
         location_id: 1,
         cameras: [31, 41],
-        name: "Asset Automatic 1",
+        events: [71],
+        name: "CJ-MT21",
     };
 
 
+const asset_63 =
+    {
+        _id: 63,
+        location_id: 1,
+        cameras: [31, 41],
+        events: [71],
+        name: "CJ-MT21",
+    };
+
+const asset_65 =
+    {
+        _id: 65,
+        location_id: 1,
+        cameras: [31, 41],
+        events: [71],
+        name: "CJ-MT21",
+    };
 
 
 
@@ -193,7 +244,11 @@ export const assets =
         asset_50,
         asset_60,
         asset_51,
-        asset_61
+        asset_61,
+        asset_62,
+        asset_63,
+        asset_64,
+        asset_65,
     ];
 
 export const events =
