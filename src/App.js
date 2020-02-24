@@ -7,10 +7,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+      </header>
           <Fragment>
               <Wrapper />
           </Fragment>
-      </header>
     </div>
   );
 }

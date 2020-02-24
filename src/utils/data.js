@@ -61,7 +61,8 @@ const camera_30 =
         device_id: 10,
         events: [70, 80],
         assets: [50, 60],
-        name: "D10 / Camera 30",
+        name: "Cam-X9Ie",
+        stream_path: "https://www.youtube.com/embed/GG1kYWLkBHE"
     };
 
 const camera_40 =
@@ -71,7 +72,8 @@ const camera_40 =
         device_id: 10,
         events: [71, 81],
         assets: [51, 61],
-        name: "D10 / Camera 40",
+        name: "Cam-5FbG",
+        stream_path: "https://www.youtube.com/embed/w0jmYm6Hy28"
     };
 
 const camera_31 =
@@ -81,7 +83,8 @@ const camera_31 =
         device_id: 20,
         events: [71, 81],
         assets: [51, 61],
-        name: "D20 / Camera 31",
+        name: "Cam-Lp03",
+        stream_path: "https://www.youtube.com/embed/GG1kYWLkBHE"
     };
 
 const camera_41 =
@@ -91,7 +94,8 @@ const camera_41 =
         device_id: 20,
         events: [70, 80],
         assets: [50, 60],
-        name: "D20 / Camera 41s",
+        name: "Cam-2Nt7",
+        stream_path: "https://www.youtube.com/embed/w0jmYm6Hy28"
     };
 
 

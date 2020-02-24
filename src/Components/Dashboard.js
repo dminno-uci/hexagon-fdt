@@ -6,10 +6,11 @@ import '../App.css';
 import pcd1 from '../images/pcd-1.jpg'
 
 import { handleGetLocationCameras } from "../actions/cameras";
-import {handleGetLocationAssets} from "../actions/assets";
+import { handleGetLocationAssets, unselectAsset } from "../actions/assets";
+import { selectAsset } from "../actions/assets";
 
 import { ItemCard } from "./ItemCard";
-import {handleGetLocationEvents} from "../actions/events";
+import { handleGetLocationEvents } from "../actions/events";
 
 import DashboardPath from './DashboardPath'
 import EventListItem from "./EventListItem";
@@ -18,9 +19,11 @@ import EventListItem from "./EventListItem";
 class Dashboard extends Component {
 
     componentDidMount() {
-        this.props.dispatch(handleGetLocationCameras(this.props.location._id));
-        this.props.dispatch(handleGetLocationAssets(this.props.location._id));
-        this.props.dispatch(handleGetLocationEvents(this.props.location._id))
+        const { dispatch } = this.props;
+        dispatch(handleGetLocationCameras(this.props.location._id));
+        dispatch(handleGetLocationAssets(this.props.location._id));
+        dispatch(handleGetLocationEvents(this.props.location._id));
+
     }
 
     state = {
@@ -37,7 +40,7 @@ class Dashboard extends Component {
     };
 
     render()  {
-        const { location, cameras, assets, events } = this.props;
+        const { location, cameras, assets, events, dispatch } = this.props;
         const { focusLocationData } = this.state;
 
         function showFocusLocationData() {
@@ -71,9 +74,20 @@ class Dashboard extends Component {
                             return (
                                 <Link to={{
                                     pathname: "/asset",
-                                    state: { asset: assets[k] }
+                                    // state: {
+                                    //     asset: assets[k],
+                                    //     cameras: assets[k].cameras.map((c) =>  {
+                                    //         return cameras.filter((c2) => {
+                                    //             return c === c2._id
+                                    //         })
+                                    //     })
+                                    // }
                                 }} >
-                                    <ItemCard key={assets[k]._id} item={assets[k]} />
+                                    <ItemCard
+                                        selectItem={()=> dispatch(selectAsset( assets[k] ))}
+                                        key={assets[k]._id}
+                                        item={assets[k]}
+                                    />
                                 </Link>
                             );
                         });
@@ -90,7 +104,7 @@ class Dashboard extends Component {
             ? <Redirect to='/locations'/>
             :
                 <div className="d-flex flex-column justify-content-center align-items-center"  id="dashboard_container">
-                    <DashboardPath />
+                    <DashboardPath target="" />
                     <div className="d-flex flex_row dashsboard_row" id="dashsboard_row">
 
                         <div className="d-flex flex-column" id="pcd_section">
